@@ -1,0 +1,205 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{latexsym, marvosym}
+\usepackage{pifont}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{pdfpages}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=0pt}
+\usepackage{xfrac}
+\usepackage[pdftex,
+            pdfauthor={Helen Simpson},
+            pdftitle={Glynn and Sen 2015 Cheatsheet},
+            ]{hyperref}
+\usepackage{relsize}
+\usepackage{rotating}
+
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+    \def\independenT#1#2{\mathrel{\setbox0\hbox{$#1#2$}%
+    \copy0\kern-\wd0\mkern4mu\box0}} 
+            
+\newcommand{\noin}{\noindent}    
+\newcommand{\logit}{\textrm{logit}} 
+\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}} 
+\newcommand{\corr}{\textrm{Corr}} 
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\Bern}{\textrm{Bern}}
+\newcommand{\Bin}{\textrm{Bin}}
+\newcommand{\Beta}{\textrm{Beta}}
+\newcommand{\Gam}{\textrm{Gamma}}
+\newcommand{\Expo}{\textrm{Expo}}
+\newcommand{\Pois}{\textrm{Pois}}
+\newcommand{\Unif}{\textrm{Unif}}
+\newcommand{\Geom}{\textrm{Geom}}
+\newcommand{\NBin}{\textrm{NBin}}
+\newcommand{\Hypergeometric}{\textrm{HGeom}}
+\newcommand{\HGeom}{\textrm{HGeom}}
+\newcommand{\Mult}{\textrm{Mult}}
+
+\geometry{top=.4in,left=.2in,right=.2in,bottom=.4in}
+
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\Large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\Large\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+\setcounter{secnumdepth}{0}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\setenumerate[1]{label=(\alph*)}
+
+% -----------------------------------------------------------------------
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\color{blue}\normalfont\large\bfseries}
+{\color{blue}\thesection}{1em}{}
+\titleformat{\subsection}
+{\color{cyan}\normalfont\normalsize\bfseries}
+{\color{cyan}\thesection}{1em}{}
+% Comment out the above 5 lines for black and white
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{2}
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TITLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+    {\color{blue} \LARGE{\textbf{Enos 2014 Cheat Sheet}}} \\
+   % {\Large{\textbf{Probability Cheatsheet}}} \\
+    % comment out line with \color{blue} and uncomment above line for b&w
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% DESCRIPTION PARAGRAPH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\large
+
+Does casual exposure to another demographic group cause a negative reaction to that group?
+
+
+% Cheatsheet format from
+% http://www.stdout.org/$\sim$winston/latex/
+% Format used for Stat 110 exam cheat sheets
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% BEGIN CHEATSHEET
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Hypothesis}\smallskip \hrule height 2pt \medskip \normalsize
+Commuters who are randomly assigned to a train car with Spanish speaking collaborators will be less tolerant of Hispanics in their survey answers after 3 days. After 10 days, however, the effect will lessen.
+
+       
+\subsection{Experimental Design}
+
+\small
+ The experiment is designed to test the effect of the ``Group Threat" mechanism. By randomly assigning collaborators to MBTA train cars, Enos directly tests for the group threat effect, rather than prior attitudes towards outgroup members, elite manipulation, or the effects of economic or political competition. 
+
+The experiment uses a matched pairs design. Two trains on the same line, relatively near to each other in location and timing, are chosen. One of them is randomly selected for treatment and the other for control. Subjects are recruited to take the surveys five days before the experiment and then either 3 days or 2 weeks into the experiment.
+
+\section{Results} \smallskip \hrule height 2pt \medskip
+
+   \small 
+   \begin{itemize}
+     \item[$\square$] Average treatment effect is positive (i.e. conservative) and significant for 2 out of 3 questions. (Table 1, column 1)
+     \item[$\square$] Subsetting the data to those who wait on the platform still results in positive and significant effects. (Table 1, column 2)
+     \item[$\square$] The effects are stronger after 3 days than 2 weeks, although the difference is not significant. (Figure 2)
+       
+   \end{itemize}
+
+\section{Other tests} \smallskip \hrule height 2pt \medskip
+
+   \small
+   \begin{itemize}
+   
+        \item[$\square$] The effects are not correlated with political or economic group membership. 
+        \item[$\square$] The commuters rarely missed the train and were exposed to the full treatment.
+        \item[$\square$] There are no significant differences between the treatment and control groups.
+        \item[$\square$] Among participants who began the study late, there is still a more exclusionary attitude than in the population before the beginning of the study
+        \item[$\square$] All confederate pairs had similar effects.
+        \item[$\square$] Survey attrition was not correlated to the experimental outcome.
+        \item[$\square$] The results would still be significant regardless of the answers of the four participants who did not complete the survey in the treatment group.
+   
+   \end{itemize}
+
+\section{Assumptions} \smallskip \hrule height 2pt \smallskip
+
+   \small
+   \begin{description}
+         \item[Balance between matching pairs:] The matched pairs of trains are as similar to each other as possible, and they are randomly assigned to treatment and control.
+         \item[Perception of collaborators:] Enos claims to establish that the experimental collaborators were seen as Hispanic foreigners but not directly threatening people. As a robustness check, he subsets for collaborator pair and separately interacts treatment and collaborator pair.
+         \item[Assignment of trains:] Trains are randomly assigned to treatment and control groups.
+         \item[Assignment of subjects:] Subjects are randomly assigned to complete post-treatment surveys after either 3 days or 2 weeks.
+         \item[Station demography:] Stations are located in areas where there is not a large Hispanic population but near areas where there are (i.e. the "demographic threat" is on people's minds).
+         \item[Commuters exposed to experiment:] Commuters were exposed to the experiment and they are reacting specifically to the experimental intervention.
+         \item[Survey attrition:] Survey attrition was not correlated to the experimental outcome.
+   \end{description}
+      
+\section{Statistical Choices}\smallskip \hrule height 2pt \smallskip
+
+   \begin{center}
+   
+   \begin{tabular}{|l|p{0.45\linewidth}|} \hline
+   \textbf{Statistical Choice} & \textbf{Justification} \\\hline
+   Average treatment effect = response before & Studying difference in attitudes\\
+   survey - response after survey & \\\hline
+   Subset to those who wait on platform & Those who wait on platform are more likely to be exposed to treatment \\\hline
+   Omnibus test for treatment and control & Test for balance \\
+   groups & \\\hline
+   Randomization inference to estimate & Random experimental setup \\
+   uncertainty/ significance in main results & \\\hline
+   Control for MBTA line in randomization & MBTA lines may have different demo- \\
+   inference & graphics and give different variance results \\\hline
+   One-tailed p-tests for main results & Assumption that there will be a positive difference (two-tailed tests still significant) \\\hline
+   Omnibus test for balance with those who & Test for balance in survey attrition \\
+   did not complete the survey & \\\hline
+   Randomization to test for significance given & Establish bounds on effect of four fewer \\
+   missingness & participants in the treatment group \\\hline
+   
+   \end{tabular}
+   \end{center}
+
+\end{multicols*}
+\end{document}
