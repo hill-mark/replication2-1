@@ -16,6 +16,9 @@ library(car)
 library(xtable)
 library(effects)
 library(RColorBrewer)
+library(SparseM)
+library(gt)
+library(tidyverse)
 
 options(scipen = 999)  ##set for non-scientific notaion output
 
