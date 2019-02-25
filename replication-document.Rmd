@@ -1,0 +1,30 @@
+---
+title: "replication-document"
+author: "Helen Simpson"
+date: "2/23/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+```{r}
+library(ri)
+library(RItools)
+library(car)
+library(xtable)
+library(effects)
+library(RColorBrewer)
+library(SparseM)
+library(gt)
+library(tidyverse)
+
+options(scipen = 999)  ##set for non-scientific notaion output
+
+##Load data
+dat.all = read.csv('dataverse_files/pnas_data.csv')
+dat.t1 = read.csv('dataverse_files/t1_data.csv')
+dat.all.prime = read.csv('dataverse_files/prime_data.csv')
+```
