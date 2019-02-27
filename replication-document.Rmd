@@ -1,16 +1,15 @@
 ---
-title: "replication-document"
+title: "Enos 2014 Replication"
 author: "Helen Simpson"
-date: "2/23/2019"
+date: "2/27/2019"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r}
+```{r include=FALSE}
 library(ri)
 library(RItools)
 library(car)
@@ -25,15 +24,18 @@ options(scipen = 999)  ##set for non-scientific notaion output
 
 ##Load data
 dat.all = read.csv('dataverse_files/pnas_data.csv')
-dat.t1 = read.csv('dataverse_files/t1_data.csv')
-dat.all.prime = read.csv('dataverse_files/prime_data.csv')
+
+#I'm sorry about the bad formatting, I don't have time this week to figure out how to make all this
+#stuff look good.
 ```
 
-```{r}
+Enos (2014) tests whether casual exposure to another demographic group causes a negative reaction to that group. Commuters who are randomly assigned to a train car with Spanish speaking collaborators will be less tolerant of Hispanics in their survey answers after 3 days. After 10 days, however, the effect will lessen. I replicate Enos's main results and tests the balance between the treatment and control groups using propensity scores.
+
+#Table 1
+```{r echo=FALSE}
 ##main_results.r
 ####primary randomization inferece
 #this makes table 1
-#not clear on why there are two p values
 
 ###inference
 repeats = c("numberim","Remain","Englishlan")
@@ -49,7 +51,7 @@ final.mat = matrix(nrow = 0, ncol = 8)
 
 subsets = c('all','no.car')
 
-cat('beginning inference \n')
+#cat('beginning inference \n')
 
 
 for(subset in subsets){
@@ -97,7 +99,6 @@ for(subset in subsets){
 		distout <- gendist(Ys,perms, prob=probs)
 		disp =	dispdist(distout, ate = ate, display.plot = F)
 	
-	#table formatting	
 		out.mat[j,1] = repeats[j]
 		out.mat[j,2] = subset
 		out.mat[j,3] = nrow(dat.use)
@@ -112,19 +113,52 @@ for(subset in subsets){
 
 final.mat = as.data.frame(final.mat)
 colnames(final.mat) = c('variable','subset','N','ate','greater.p.value','lesser.p.value','x.sd','x.mean')
-gt(final.mat)
 
 final.mat.main = final.mat ##final.mat for output creation later
 
-```
+gt(final.mat.main)
 
-```{r}
+```
+#Table 2
+```{r echo=FALSE}
 ##balance_check.r
 ###check to see if randomization created balanced samples in Enos experiment
 ####RdE September 2012
 #first output is table 2
 
 #test for balance of demographic characteristics between treatment and control groups
+#code from Hannah Hardenbergh
 out.balance.test = xBalance(fmla = treatment ~ liberal+republican+obama.disapprove+ride.everyday+voted.2010+romney.voter+Hispanics.x+age+residency.new+hispanic.new+college+income.new+male+white, data = dat.all, report = c("std.diffs","z.scores","adj.means","chisquare.test"), strata = factor(dat.all$station))
-gt.balance.test <- gt(out.balance.test)
-gt.balance.test
+
+xtable.out.balance.text = xtable(out.balance.test)
+print(xtable.out.balance.text, file = 'balance_table.tex',
+	floating = FALSE)
+xtable.out.balance.text %>% 
+  select(`treatment=0`,
+         `treatment=1`, 
+         std.diff,
+         z) %>% 
+  gt(rownames_to_stub = TRUE)
+
+```
+#Extension
+
+```{r echo=FALSE}
+#Thanks to Mark for the idea and help with the code
+obj <- glm(treatment ~ liberal + conservative + obama.disapprove + ride.everyday + voted.2010 + romney.voter + Hispanics.x + age + residency.new + hispanic.new + college + income.new + male + white, data = dat.all, family = "binomial")
+predict.obj <- predict(obj, type = "response")
+dat.all$treated.prob <- predict.obj
+
+treatment.subset <- subset(dat.all, treatment == 1)
+control.subset <- subset(dat.all, treatment == 0)
+
+ggplot(control.subset, aes(x = treated.prob)) + geom_density(kernel = "gaussian") + labs(x = "Probability of Treatment", y = "Density", title = "Control Subjects") + theme_classic()
+ggplot(treatment.subset, aes(x = treated.prob)) + geom_density(kernel = "gaussian") + labs(x = "Probability of Treatment", y = "Density", title = "Treatement Subjects") +theme_classic()
+
+#if I had more time I would put these on the same plot and use different colors, or at least make the scales the same
+```
+
+\pagebreak
+#Bibliography
+
+Enos, Ryan. (2014). "Causal effect of intergroup contact on exclusionary attitudes." *Proceedings of the National Academy of Sciences*, 111(10): 3669-3704.
