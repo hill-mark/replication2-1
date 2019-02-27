@@ -142,7 +142,7 @@ xtable.out.balance.text %>%
 
 ```
 #Extension
-
+Enos argues that the treatment and control groups are very similar on a variety of demographic indicators. The balance test he performs in order to test this, however, is univariate. Propensity scores, described in section 10.3 of the textbook, allow us to test balance on all of the dimensions Enos uses simultaneously. The density plots below show propensity scores. They demonstrate that there is a substantial, but not perfect, overlap between the control and treatment groups. This confirms Enos's results from Table 2.
 ```{r echo=FALSE}
 #Thanks to Mark for the idea and help with the code
 obj <- glm(treatment ~ liberal + conservative + obama.disapprove + ride.everyday + voted.2010 + romney.voter + Hispanics.x + age + residency.new + hispanic.new + college + income.new + male + white, data = dat.all, family = "binomial")
@@ -158,7 +158,6 @@ ggplot(treatment.subset, aes(x = treated.prob)) + geom_density(kernel = "gaussia
 #if I had more time I would put these on the same plot and use different colors, or at least make the scales the same
 ```
 
-\pagebreak
 #Bibliography
 
 Enos, Ryan. (2014). "Causal effect of intergroup contact on exclusionary attitudes." *Proceedings of the National Academy of Sciences*, 111(10): 3669-3704.
