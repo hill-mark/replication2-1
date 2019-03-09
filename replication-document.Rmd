@@ -31,6 +31,8 @@ dat.all = read.csv('dataverse_files/pnas_data.csv')
 
 Enos (2014) tests whether casual exposure to another demographic group causes a negative reaction to that group. Commuters who are randomly assigned to a train car with Spanish speaking collaborators will be less tolerant of Hispanics in their survey answers after 3 days. After 10 days, however, the effect will lessen. I replicate Enos's main results and tests the balance between the treatment and control groups using propensity scores.
 
+Great summary of paper and abstract.
+
 #Table 1
 ```{r echo=FALSE}
 ##main_results.r
@@ -118,6 +120,11 @@ final.mat.main = final.mat ##final.mat for output creation later
 
 gt(final.mat.main)
 
+# I know gt is probably new to you (it is to me too!) but in the future
+# would definitely like to see some more formatting of this table
+# in the column headers, footnotes from original paper, and rounded numbers so
+# the table fits
+
 ```
 #Table 2
 ```{r echo=FALSE}
@@ -140,7 +147,12 @@ xtable.out.balance.text %>%
          z) %>% 
   gt(rownames_to_stub = TRUE)
 
+# Same as above, good table, glad to see you're trying out gt, definitely want to
+# see if you can make it look a little more, or better, than what's in the paper
 ```
+
+What happened to the figure?
+
 #Extension
 Enos argues that the treatment and control groups are very similar on a variety of demographic indicators. The balance test he performs in order to test this, however, is univariate. Propensity scores, described in section 10.3 of the textbook, allow us to test balance on all of the dimensions Enos uses simultaneously. The density plots below show propensity scores. They demonstrate that there is a substantial, but not perfect, overlap between the control and treatment groups. This confirms Enos's results from Table 2.
 ```{r echo=FALSE}
@@ -156,7 +168,11 @@ ggplot(control.subset, aes(x = treated.prob)) + geom_density(kernel = "gaussian"
 ggplot(treatment.subset, aes(x = treated.prob)) + geom_density(kernel = "gaussian") + labs(x = "Probability of Treatment", y = "Density", title = "Treatement Subjects") +theme_classic()
 
 #if I had more time I would put these on the same plot and use different colors, or at least make the scales the same
+# This is a good comment to have because I would have suggested the same thing, but showing me that you
+# at least thought about how to make it better is good for grading purposes.
 ```
+
+For future extensions I would recommend talking a little more about your extension. Why did you choose to do what you did? What are the advantages/disadvantages of this method over the one's used by the author? How does it help you or the reader better understand the results presented in the original paper? The extension is your opportunity to show us what you've learned in the class and how to apply it, so tell us what you're thinking.
 
 #Bibliography
 
